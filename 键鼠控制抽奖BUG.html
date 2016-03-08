@@ -1,0 +1,77 @@
+<DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>content</title>
+<style type="text/css">
+html,body,div,button{margin: 0;padding: 0;}
+.title{margin: 0 auto;width: 300px;height: 100px;margin-top: 50px;text-align: center;color: #f00;font-weight: bold;font-size:30px; }
+.btns{width: 300px;height: 30px;margin: 0 auto;}
+button{display: block;float: left;
+	width: 100px;height: 25px;line-height: 25px;background-color: orange;border: 1px solid #eee;border-radius: 5px;outline: none;cursor: pointer;color:#fff;font-family: "微软雅黑"
+}
+#stop{float: right;}
+</style>
+</head>
+<body>
+	<div class="title" id="title">开始抽奖</div>
+	<div class="btns">
+		<button id="start">开始</button><button id="stop">停止</button>
+	</div>
+<script type="text/javascript">
+// 绑定事件
+		window.onload=function(){
+		var start=document.getElementById("start"),
+			stop=document.getElementById("stop");
+			start.onclick=action;
+			stop.onclick=mystop;
+
+		}
+
+
+	var data=["iphone5","ipad","三星笔记本","佳能相机","50元充值券","谢谢参与"],
+		timer=null;
+		//判断抽奖是否开始进行，若开始则flag=false
+
+		// 抽奖开始函数
+	function action(){
+		var otitle=document.getElementById("title");
+		var start=document.getElementById("start");
+		if(timer==null){
+		timer=setInterval(change,50);
+		start.style.backgroundColor="#ccc";}
+		
+	};
+
+	// 奖品改变函数
+	function change(){
+		var otitle=document.getElementById("title");
+		var num=Math.floor(Math.random()*data.length);
+			otitle.innerHTML=data[num];
+	};
+
+	// 抽奖停止函数
+	function mystop(){
+		var start=document.getElementById("start");
+		start.style.backgroundColor="orange";
+		clearInterval(timer);
+		timer=null;
+
+	}
+
+
+	// 键盘事件 keyDown  keyPress keyUp   
+	 document.onkeyup=function(event){
+	 	event=event||window.event;
+	 	if(event.keyCode==13){
+	 		if(timer==null){
+	 			action();
+	 		}
+	 		else{
+	 			mystop();
+	 		}
+	 	}
+	 };
+</script>
+</body>
+</html>
