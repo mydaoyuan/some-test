@@ -1,0 +1,50 @@
+<DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>content</title>
+<style type="text/css">	
+body,div{margin: 0;padding: 0;}
+body{position: relative;}
+#content{width: 200px;height: 100px;position: absolute;left: -200px;top:100px;background: orange;}
+#span{position: absolute;width: 20px;height: 50px;background: blue;left:200px;top:25px;}
+</style>
+<script type="text/javascript">	
+ 	function addEvent(elem, type, listener){
+   	 if(elem.addEventListener){
+  	     elem.addEventListener(type, listener);
+  	  }
+ 	 else{ 
+  	  elem.attachEvent('on' + type, listener);}
+  
+ 	 };
+	window.onload=function(){
+		var timer=null;
+		var box=document.getElementById("content"),
+			span=document.getElementById("span");
+			addEvent(box,"mouseover",function(){toMove(0)});
+			addEvent(box,"mouseout",function(){toMove(-200)});
+
+		 function toMove(target){
+		 	clearInterval(timer);
+		 	
+		 	timer=setInterval(function(){
+			var speed=(target-box.offsetLeft)/20;
+			speed>0?speed=Math.ceil(speed):speed=Math.floor(speed);
+
+		 	if(box.offsetLeft==target){ clearInterval(timer);timer=null;}
+
+		 	else{
+		 		box.style.left=box.offsetLeft+speed+"px";
+		 		}
+		 	},10)
+		 };
+		
+	}
+</script>
+</head>
+<body>
+	<div id="content"><span id="span">分享</span></div>
+	
+</body>
+</html>

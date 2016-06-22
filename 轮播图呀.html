@@ -1,0 +1,86 @@
+<DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>轮播图差动画</title>
+
+<style type="text/css">
+html,body,ul,ol,div{margin:0;padding: 0;}
+li{list-style: none;}
+#box{width: 520px;height: 280px;margin: auto;position: relative;}
+ol{position: absolute;bottom: 5px;left:220px;}
+img{width: 520px;height: 280px;}
+ol>li{display: inline-block;background-color: #fff;color: orange;width: 15px;height: 15px;text-align: center;line-height: 15px;cursor:pointer;border-radius: 10px;margin-right: 4px;}
+ul>li{display: none;}
+ol>li.active{background-color: orange;color: #fff;}
+</style>
+</head>
+<body>
+<div id="box">
+	<ul>
+		<li style="display: block;"><img src="image\bg1.jpg" alt=""></li>
+		<li><img src="image\bg2.jpg" alt=""></li>
+		<li><img src="image\bg3.jpg" alt=""></li>
+		<li><img src="image\bg4.jpg" alt=""></li>
+		<li><img src="image\bg5.jpg" alt=""></li>
+	</ul>
+	<ol>
+		<li  class="active"></li><li></li><li></li><li></li><li></li>
+	</ol>
+</div>
+<script type="text/javascript">
+// 方法1，直接切换
+	window.onload=function(){
+		var oUl=document.getElementsByTagName("ul")[0];
+		var oUlli=oUl.getElementsByTagName("li");
+		var oOl=document.getElementsByTagName("ol")[0];
+		var oOlli=oOl.getElementsByTagName("li");
+		var prev=0;
+		var timer=null;
+		var oBox=document.getElementById("box");
+
+
+
+		// 导航点
+		for(var i=0;i<oOlli.length;i++){
+			oOlli[i].index=i;
+			oOlli[i].onmouseover=function(){
+				prev=this.index;
+				for(var i=0;i<oOlli.length;i++){
+					oOlli[i].className="";
+					oUlli[i].style.display="none";
+				}
+				this.className="active";
+                oUlli[this.index].style.display="block";
+ 			}
+
+		}
+
+		// 定时器循环
+		var timer=setInterval(toRun,2000);
+
+		oBox.onmouseover=function(){
+			clearTimeout(timer);
+		}
+		oBox.onmouseout=function(){
+			timer=setInterval(toRun,2000);
+		}
+		function toRun(){
+		for(var i=0;i<oOlli.length;i++){
+					oOlli[i].className="";
+					oUlli[i].style.display="none";
+				}
+        oOlli[prev].className="active";
+        oUlli[prev].style.display="block";
+        prev=prev+1;
+        if(prev==5){
+           prev=0;
+        }
+		}
+		
+	}
+
+
+</script>
+</body>
+</html>
