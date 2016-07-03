@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>content</title>
+	<script type="text/javascript" src="jq3.0.js"></script>
+	<style type="text/css">
+		.content{width: 720px;height: 250px;border: 1px solid #999;padding: 0;overflow:hidden;}
+		.content .head{height: 50px;margin:0 0 10px 0;background-color: #eee;}
+		.content .head .cartoon{line-height: 50px;font-size: 20px;margin: 0 0 0 10px ;padding: 0;float: left;}
+		.content .head ._tip{float: left;margin: 20px;}
+		.content .head ._tip li{display: inline-block;width: 10px;height: 10px;border-radius: 10px;background-color: #fff;}
+		.content .head ._btn{float: left;width: 50px;height: 10px;margin: 20px 0 20px 0;}
+		.content .head ._btn span{display:inline-block; width: 20px;height: 10px;border-radius: 3px;box-shadow: 0 0 2px #000;line-height: 50px;background-color: #fff;margin-right: 5px;}
+		.content .head>span{display: block;float: right;margin: 20px;}
+		.content .head>span>a:after{content: ">>"}
+		/*middle*/
+		.content .middle{width: 99999px;height: 200px;padding: 0;position: relative;left:0;}
+		.content .middle li{display:block;margin-right: 10px;margin-left: 10px;float: left;}
+		.content .middle li img{width: 160px;height: 100px;}
+		.content .middle li h4{margin: 10px 0 10px 0;padding: 0;}
+		.content .head ._tip .current{background-color: #000;}
+	</style>
+</head>
+<body>
+	<div class="content">
+		<div class="head">
+			<h3 class="cartoon" title="动漫视频">动漫视频</h3>
+			<ul class="_tip">
+				<li class="current"></li>
+				<li></li>
+				<li></li>
+			</ul>
+			<div class="_btn">
+				<span class="left"></span><span class="right"></span>
+			</div>		
+			<span clas="more"><a href="">更多</a></span>
+		</div>	
+		<ul class="middle">
+			<li><a href=""><img src="http://i2.hdslb.com/bfs/archive/27919635e97354604c6d2400b2f24fb0e78ac0ff.jpg_320x200.jpg"></a><h4><a href="">海贼王</a></h4><span>播放：<em>57,254</em></span></li>	
+			<li><a href=""><img src="http://i2.hdslb.com/bfs/archive/27919635e97354604c6d2400b2f24fb0e78ac0ff.jpg_320x200.jpg"></a><h4><a href="">海贼王</a></h4><span>播放：<em>57,254</em></span></li>	
+			<li><a href=""><img src="http://i2.hdslb.com/bfs/archive/27919635e97354604c6d2400b2f24fb0e78ac0ff.jpg_320x200.jpg"></a><h4><a href="">海贼王</a></h4><span>播放：<em>57,254</em></span></li>	
+			<li><a href=""><img src="http://i2.hdslb.com/bfs/archive/27919635e97354604c6d2400b2f24fb0e78ac0ff.jpg_320x200.jpg"></a><h4><a href="">海贼王</a></h4><span>播放：<em>57,254</em></span></li>	
+			<li><a href=""><img src="http://i1.hdslb.com/bfs/archive/8b3b6300f5aacbee81222057538ce0be5f9970aa.jpg_320x200.jpg"></a><h4><a href="">火影忍者</a></h4><span>播放：<em>50,254</em></span></li>
+			<li><a href=""><img src="http://i1.hdslb.com/bfs/archive/8b3b6300f5aacbee81222057538ce0be5f9970aa.jpg_320x200.jpg"></a><h4><a href="">火影忍者</a></h4><span>播放：<em>50,254</em></span></li>
+			<li><a href=""><img src="http://i1.hdslb.com/bfs/archive/8b3b6300f5aacbee81222057538ce0be5f9970aa.jpg_320x200.jpg"></a><h4><a href="">火影忍者</a></h4><span>播放：<em>50,254</em></span></li>
+			<li><a href=""><img src="http://i1.hdslb.com/bfs/archive/8b3b6300f5aacbee81222057538ce0be5f9970aa.jpg_320x200.jpg"></a><h4><a href="">火影忍者</a></h4><span>播放：<em>50,254</em></span></li>
+			<li><a href=""><img src="http://i1.hdslb.com/bfs/archive/c2c44b78d910934eec155e181f02a1d35dac073e.png_320x200.png"></a><h4><a href="">天线宝宝</a></h4><span>播放：<em>48,254</em></span></li>
+			<li><a href=""><img src="http://i1.hdslb.com/bfs/archive/c2c44b78d910934eec155e181f02a1d35dac073e.png_320x200.png"></a><h4><a href="">天线宝宝</a></h4><span>播放：<em>48,254</em></span></li>
+			<li><a href=""><img src="http://i1.hdslb.com/bfs/archive/c2c44b78d910934eec155e181f02a1d35dac073e.png_320x200.png"></a><h4><a href="">天线宝宝</a></h4><span>播放：<em>48,254</em></span></li>
+			<li><a href=""><img src="http://i1.hdslb.com/bfs/archive/c2c44b78d910934eec155e181f02a1d35dac073e.png_320x200.png"></a><h4><a href="">天线宝宝</a></h4><span>播放：<em>48,254</em></span></li>
+		</ul>
+	</div>
+	<script type="text/javascript">
+	$(function(){
+		var page=1;
+		var i=4;
+		$(".right").click(function(){
+			var $content=$(this).parents(".content");//展示窗口
+			var v_width=$content.width();//带单位的展示长度
+			var len=$(this).parents(".head").next().find("li").length//图片数量
+			var page_count=Math.ceil(len/i);//最大版面数
+			if(!$(".middle").is(":animated")){
+				if(page===page_count){//进行到最后一个版面
+					$(".middle").animate({"left":0},"slow");
+					page=1;
+				}else{
+					$(".middle").animate({"left":"-="+v_width},"slow");
+					page++;
+				}
+				$(this).parent().prev().children().removeClass().eq(page-1).addClass("current");
+			}
+		});
+		$(".left").click(function(){
+			var $content=$(this).parents(".content");//展示窗口
+			var v_width=$content.width();//带单位的展示长度
+			var len=$(this).parents(".head").next().find("li").length//图片数量
+			var page_count=Math.ceil(len/i);//最大版面数
+			if(!$(".middle").is(":animated")){
+				if(page===1){//进行到第一个版面
+					$(".middle").animate({"left":"-="+(page_count-1)*v_width},"slow");
+					page=page_count;
+				}else{
+					$(".middle").animate({"left":"+="+v_width},"slow");
+					page--;
+				}
+				$(this).parent().prev().children().removeClass().eq(page-1).addClass("current");
+			}
+		})
+	})
+	</script>
+</body>
+</html>
